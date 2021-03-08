@@ -1,18 +1,19 @@
 const path = require('path');
 const fs = require("fs");
 const router = require('express').Router();
-const { notes } = require("../../db/db");
+const uniqid = require('uniqid');
+const notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../../db/db.json')));
 // const createNewNote = require('../../lib/notes');
 
-// const notes = [{title: "panda", text: "pandas like to eat bamboo"}]
 function createNewNote(body, notesArray) {
     const note = body;
+    note.id = uniqid();
+    console.log(note.id);
     notesArray.push(note);
-    JSON.stringify(notesArray);
-    console.log(typeof(notesArray));
+    let stringifiedData = JSON.stringify(notesArray);
     fs.writeFileSync(
         path.join(__dirname, '../../db/db.json'),
-        notesArray
+        stringifiedData
     );
     return note;
 }
@@ -22,7 +23,8 @@ router.get('/notes', (req, res) => {
 
 router.post('/notes', (req, res) => {
     const note = createNewNote(req.body, notes);
-    res.json(router);
+    console.log(note);
+    res.json(note);
 })
 
 
