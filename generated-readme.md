@@ -20,3 +20,4 @@
   To contribute clone the repo and address any unresolved issues then commits will be aproved after review.  Areas of development to focus on are delete functionality.
   ## Questions
   For any questions reach out on [GitHub](https://github.com/PaulKup) or by email: kupiszewskist1@gmail.com
+
